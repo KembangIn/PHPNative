@@ -3,21 +3,122 @@
   "displayName": "PHPNative",
   "description": "Accelerate Your PHP Workflow with PHPNative. Create new PHP files, complete with folder structures, directly from the Command Palette without manual clicking.",
   "version": "0.0.1",
+  "publisher": "kembangin",
+  "author": {
+    "name": "KembangIn Digital Nusantara",
+    "email": "support@kembang.in"
+  },
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "homepage": "https://github.com/KembangIn/PHPNative#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KembangIn/PHPNative"
+  },
+  "bugs": {
+    "url": "https://github.com/KembangIn/PHPNative/issues"
+  },
   "engines": {
     "vscode": "^1.104.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
   ],
-  "activationEvents": [],
-  "main": "./dist/extension.js",
+  "keywords": [
+    "muhammadmauribi",
+    "muham",
+    "muhamdaily",
+    "kembangin digital nusantara",
+    "kembangin digital",
+    "kembangdotin",
+    "kembangin",
+    "php",
+    "phpnative",
+    "php native",
+    "php native extension",
+    "php native vscode",
+    "php native visual studio code",
+    "php native code",
+    "php native plugin",
+    "php native tools",
+    "php native utility",
+    "php native helper",
+    "php native snippet",
+    "php native generator",
+    "php native automation",
+    "php native workflow",
+    "php native productivity",
+    "php native development",
+    "php native coding",
+    "php native programming",
+    "php native toolset",
+    "php native addon",
+    "php native package",
+    "php native module",
+    "php native component",
+    "php native feature"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "contributes": {
     "commands": [
       {
-        "command": "phpnative.helloWorld",
-        "title": "Hello World"
+        "command": "phpnative.createFile",
+        "title": "PHPNative: Create New PHP File"
+      },
+      {
+        "command": "phpnative.serve",
+        "title": "PHPNative: Quick Server Start"
+      },
+      {
+        "command": "phpnative.stopServer",
+        "title": "PHPNative: Stop PHP Server"
+      },
+      {
+        "command": "phpnative.openInBrowser",
+        "title": "PHPNative: Open Root in Browser"
+      },
+      {
+        "command": "phpnative.openFileInBrowser",
+        "title": "PHPNative: Open File in Browser"
       }
-    ]
+    ],
+    "submenus": [
+      {
+        "id": "phpnative.submenu",
+        "label": "PHPNative"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "phpnative.submenu",
+          "group": "2_workspace@1"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "phpnative.submenu",
+          "group": "2_workspace@1"
+        }
+      ],
+      "phpnative.submenu": [
+        {
+          "command": "phpnative.createFile"
+        },
+        {
+          "command": "phpnative.openFileInBrowser"
+        },
+        {
+          "command": "phpnative.serve"
+        },
+        {
+          "command": "phpnative.stopServer"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -28,7 +129,8 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "release": "npm version patch && vsce package && vsce publish"
   },
   "devDependencies": {
     "@types/vscode": "^1.104.0",
