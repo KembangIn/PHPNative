@@ -2,7 +2,7 @@
   "name": "phpnative",
   "displayName": "PHPNative",
   "description": "Accelerate Your PHP Workflow with PHPNative. Create new PHP files, complete with folder structures, directly from the Command Palette without manual clicking.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "kembangin",
   "author": {
     "name": "KembangIn Digital Nusantara",
