@@ -5,6 +5,27 @@ This changelog format is inspired by [Keep a Changelog](https://keepachangelog.c
 
 ---
 
+## [0.0.4] - 2025-09-26
+
+### Added
+
+* ✨ **Comprehensive PHP Snippets**:
+  * Added 25+ essential PHP code snippets for faster development
+  * Includes: echo statements, control structures, loops, functions, classes, database connections, forms, and more
+  * Accessible via IntelliSense in PHP files with `php:` prefix
+  * Supports tab completion and placeholder navigation
+
+### Snippets Categories:
+* **Basic Tags**: `php`, `php:echo`, `echo`
+* **Control Structures**: `php:if`, `php:ifelse`, `php:switch`
+* **Loops**: `php:for`, `php:foreach`, `php:while`
+* **Functions & Classes**: `php:function`, `php:class`, `php:classcon`
+* **Database**: `php:db`, `php:pdo`
+* **Forms & Requests**: `php:form`, `php:get`, `php:post`
+* **Utilities**: `php:session`, `php:include`, `php:try`
+
+---
+
 ## [0.0.3] - 2025-09-26
 
 ### Added
@@ -71,3 +92,4 @@ This changelog format is inspired by [Keep a Changelog](https://keepachangelog.c
 * `0.0.1` introduced all the core features including file creation, PHP server management, and browser integration.
 * `0.0.2` focused on internationalization by switching the entire interface to English for global accessibility.
 * `0.0.3` adds customizable default port settings for improved workflow efficiency and user preference management.
+* `0.0.4` brings a suite of PHP code snippets to enhance coding speed and efficiency within the extension.

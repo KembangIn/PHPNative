@@ -1,0 +1,279 @@
+{
+    "PHP Echo Short": {
+        "prefix": "php:echo",
+        "body": [
+            "<?php echo \"$1\"; ?>$0"
+        ],
+        "description": "PHP echo statement with PHP tags"
+    },
+    "PHP Echo HTML": {
+        "prefix": "echo",
+        "body": [
+            "<?= \"$1\" ?>$0"
+        ],
+        "description": "PHP short echo tag"
+    },
+    "PHP Basic Structure": {
+        "prefix": "php",
+        "body": [
+            "<?php $0 ?>"
+        ],
+        "description": "Basic PHP file structure"
+    },
+    "PHP If Statement": {
+        "prefix": "php:if",
+        "body": [
+            "<?php if ($1): ?>",
+            "\t$2",
+            "<?php endif; ?>$0"
+        ],
+        "description": "PHP if statement with alternative syntax"
+    },
+    "PHP If Else": {
+        "prefix": "php:ifelse",
+        "body": [
+            "<?php if ($1): ?>",
+            "\t$2",
+            "<?php else: ?>",
+            "\t$3",
+            "<?php endif; ?>$0"
+        ],
+        "description": "PHP if-else statement"
+    },
+    "PHP If Elseif": {
+        "prefix": "php:ifelseif",
+        "body": [
+            "<?php if ($1): ?>",
+            "\t$2",
+            "<?php elseif ($3): ?>",
+            "\t$4",
+            "<?php else: ?>",
+            "\t$5",
+            "<?php endif; ?>$0"
+        ],
+        "description": "PHP if-elseif-else statement"
+    },
+    "PHP For Loop": {
+        "prefix": "php:for",
+        "body": [
+            "<?php for (\\$i = 0; \\$i < $1; \\$i++): ?>",
+            "\t$2",
+            "<?php endfor; ?>$0"
+        ],
+        "description": "PHP for loop with alternative syntax"
+    },
+    "PHP For Loop Standard": {
+        "prefix": "for",
+        "body": [
+            "for (\\$i = 0; \\$i < $1; \\$i++) {",
+            "\t$2",
+            "}$0"
+        ],
+        "description": "Standard PHP for loop"
+    },
+    "PHP Foreach": {
+        "prefix": "php:foreach",
+        "body": [
+            "<?php foreach (\\$1 as \\$2): ?>",
+            "\t$3",
+            "<?php endforeach; ?>$0"
+        ],
+        "description": "PHP foreach loop with alternative syntax"
+    },
+    "PHP Foreach Standard": {
+        "prefix": "foreach",
+        "body": [
+            "foreach (\\$1 as \\$2) {",
+            "\t$3",
+            "}$0"
+        ],
+        "description": "Standard PHP foreach loop"
+    },
+    "PHP While Loop": {
+        "prefix": "php:while",
+        "body": [
+            "<?php while ($1): ?>",
+            "\t$2",
+            "<?php endwhile; ?>$0"
+        ],
+        "description": "PHP while loop with alternative syntax"
+    },
+    "PHP Function": {
+        "prefix": "php:function",
+        "body": [
+            "function ${1:function_name}($2) {",
+            "\t$3",
+            "\treturn $4;",
+            "}$0"
+        ],
+        "description": "PHP function definition"
+    },
+    "PHP Class": {
+        "prefix": "php:class",
+        "body": [
+            "class ${1:ClassName} {",
+            "\t$2",
+            "}$0"
+        ],
+        "description": "PHP class definition"
+    },
+    "PHP Class with Constructor": {
+        "prefix": "php:classcon",
+        "body": [
+            "class ${1:ClassName} {",
+            "\tpublic function __construct($2) {",
+            "\t\t$3",
+            "\t}",
+            "\t$4",
+            "}$0"
+        ],
+        "description": "PHP class with constructor"
+    },
+    "PHP Variable": {
+        "prefix": "php:var",
+        "body": [
+            "\\$${1:variable} = $2;$0"
+        ],
+        "description": "PHP variable assignment"
+    },
+    "PHP Array": {
+        "prefix": "php:array",
+        "body": [
+            "\\$${1:array} = [$2];$0"
+        ],
+        "description": "PHP array definition"
+    },
+    "PHP Associative Array": {
+        "prefix": "php:assoc",
+        "body": [
+            "\\$${1:array} = [",
+            "\t'${2:key}' => '${3:value}',",
+            "];$0"
+        ],
+        "description": "PHP associative array"
+    },
+    "PHP Switch": {
+        "prefix": "php:switch",
+        "body": [
+            "switch (\\$$1) {",
+            "\tcase '$2':",
+            "\t\t$3",
+            "\t\tbreak;",
+            "\tcase '$4':",
+            "\t\t$5",
+            "\t\tbreak;",
+            "\tdefault:",
+            "\t\t$6",
+            "\t\tbreak;",
+            "}$0"
+        ],
+        "description": "PHP switch statement"
+    },
+    "PHP Try Catch": {
+        "prefix": "php:try",
+        "body": [
+            "try {",
+            "\t$1",
+            "} catch (Exception \\$e) {",
+            "\techo 'Error: ' . \\$e->getMessage();",
+            "}$0"
+        ],
+        "description": "PHP try-catch block"
+    },
+    "PHP Database Connection": {
+        "prefix": "php:db",
+        "body": [
+            "\\$servername = \"localhost\";",
+            "\\$username = \"root\";",
+            "\\$password = \"\";",
+            "\\$dbname = \"${1:database_name}\";",
+            "",
+            "// Create connection",
+            "\\$conn = new mysqli(\\$servername, \\$username, \\$password, \\$dbname);",
+            "",
+            "// Check connection",
+            "if (\\$conn->connect_error) {",
+            "\tdie(\"Connection failed: \" . \\$conn->connect_error);",
+            "}",
+            "echo \"Connected successfully\";$0"
+        ],
+        "description": "PHP MySQL database connection"
+    },
+    "PHP PDO Connection": {
+        "prefix": "php:pdo",
+        "body": [
+            "try {",
+            "\t\\$pdo = new PDO(\"mysql:host=localhost;dbname=${1:database_name}\", \"root\", \"\");",
+            "\t\\$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);",
+            "\techo \"Connected successfully\";",
+            "} catch(PDOException \\$e) {",
+            "\techo \"Connection failed: \" . \\$e->getMessage();",
+            "}$0"
+        ],
+        "description": "PHP PDO database connection"
+    },
+    "PHP HTML Form": {
+        "prefix": "php:form",
+        "body": [
+            "<?php",
+            "if (\\$_SERVER[\"REQUEST_METHOD\"] == \"POST\") {",
+            "\t\\$${1:variable} = \\$_POST['${2:field}'];",
+            "\t// Process form data here",
+            "}",
+            "?>",
+            "<form method=\"post\" action=\"\">",
+            "\t<label for=\"${2:field}\">${3:Label}:</label>",
+            "\t<input type=\"text\" name=\"${2:field}\" id=\"${2:field}\">",
+            "\t<input type=\"submit\" value=\"Submit\">",
+            "</form>$0"
+        ],
+        "description": "PHP HTML form with processing"
+    },
+    "PHP Session Start": {
+        "prefix": "php:session",
+        "body": [
+            "session_start();$0"
+        ],
+        "description": "Start PHP session"
+    },
+    "PHP Include": {
+        "prefix": "php:include",
+        "body": [
+            "include '${1:file.php}';$0"
+        ],
+        "description": "PHP include statement"
+    },
+    "PHP Require": {
+        "prefix": "php:require",
+        "body": [
+            "require '${1:file.php}';$0"
+        ],
+        "description": "PHP require statement"
+    },
+    "PHP Comment Block": {
+        "prefix": "php:comment",
+        "body": [
+            "/**",
+            " * $1",
+            " *",
+            " * @param $2",
+            " * @return $3",
+            " */$0"
+        ],
+        "description": "PHP docblock comment"
+    },
+    "PHP Get Request": {
+        "prefix": "php:get",
+        "body": [
+            "\\$${1:variable} = \\$_GET['${2:param}'] ?? '';$0"
+        ],
+        "description": "PHP GET request parameter"
+    },
+    "PHP Post Request": {
+        "prefix": "php:post",
+        "body": [
+            "\\$${1:variable} = \\$_POST['${2:field}'] ?? '';$0"
+        ],
+        "description": "PHP POST request parameter"
+    }
+}
