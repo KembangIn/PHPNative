@@ -2,7 +2,7 @@
   "name": "phpnative",
   "displayName": "PHPNative",
   "description": "Accelerate Your PHP Workflow with PHPNative. Create new PHP files, complete with folder structures, directly from the Command Palette without manual clicking.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "kembangin",
   "author": {
     "name": "KembangIn Digital Nusantara",
@@ -63,6 +63,18 @@
     "onStartupFinished"
   ],
   "contributes": {
+    "configuration": {
+      "title": "PHPNative",
+      "properties": {
+        "phpnative.defaultPort": {
+          "type": "number",
+          "default": 8000,
+          "minimum": 1024,
+          "maximum": 65535,
+          "description": "Default port number for PHP development server"
+        }
+      }
+    },
     "commands": [
       {
         "command": "phpnative.createFile",

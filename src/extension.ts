@@ -66,7 +66,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposableServe = vscode.commands.registerCommand('phpnative.serve', async () => {
 		const workspaceFolders = vscode.workspace.workspaceFolders;
 		if (!workspaceFolders) {
-			vscode.window.showErrorMessage('Open a folder/project in VSCode first!');
+			vscode.window.showErrorMessage('Open a folder/project in Vscode first!');
 			return;
 		}
 
@@ -77,12 +77,38 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 
-		const portInput = await vscode.window.showInputBox({
-			prompt: 'Enter port for PHP server (default: 8000)',
-			placeHolder: '8000'
-		});
+		// Baca default port dari settings
+		const config = vscode.workspace.getConfiguration('phpnative');
+		const defaultPort = config.get<number>('defaultPort', 8000);
 
-		currentPort = portInput && !isNaN(Number(portInput)) ? portInput : '8000';
+		let selectedPort: string;
+
+		// Jika default port sudah diset di settings, gunakan tanpa bertanya
+		if (config.has('defaultPort') && defaultPort !== 8000) {
+			selectedPort = defaultPort.toString();
+			vscode.window.showInformationMessage(`Using default port from settings: ${selectedPort}`);
+		} else {
+			// Jika tidak ada setting, tanya user
+			const portInput = await vscode.window.showInputBox({
+				prompt: 'Enter port for PHP server',
+				placeHolder: defaultPort.toString(),
+				value: defaultPort.toString()
+			});
+
+			if (!portInput) {
+				// User membatalkan, gunakan default
+				selectedPort = defaultPort.toString();
+			} else {
+				const portNumber = parseInt(portInput);
+				if (isNaN(portNumber) || portNumber < 1024 || portNumber > 65535) {
+					vscode.window.showErrorMessage('Port must be a number between 1024 and 65535!');
+					return;
+				}
+				selectedPort = portNumber.toString();
+			}
+		}
+
+		currentPort = selectedPort;
 
 		phpServerTerminal = vscode.window.createTerminal("PHP Server");
 		phpServerTerminal.sendText(`php -S localhost:${currentPort} -t "${rootPath}"`);
